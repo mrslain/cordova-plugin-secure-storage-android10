@@ -8,7 +8,7 @@ import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.os.Handler;
-import android.provider.Settings;
+import android.app.admin.DevicePolicyManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -339,7 +339,7 @@ public class SecureStorage extends CordovaPlugin {
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 try {
-                    Intent intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
+                    Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
                     startActivity(intent);
                 } catch (Exception e) {
                     Log.e(TAG, "Error opening Security settings to secure device : ", e);
